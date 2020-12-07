@@ -1,0 +1,54 @@
+<%
+const lat = j['http://schema.org/latitude'] || j["http://rs.tdwg.org/dwc/terms/decimalLatitude"];
+const lon = j['http://schema.org/longitude'] || j["http://rs.tdwg.org/dwc/terms/decimalLongitude"];
+const minElevation = j['http://rs.tdwg.org/dwc/terms/minimumElevationInMeters'];
+const maxElevation = j['http://rs.tdwg.org/dwc/terms/maximumElevationInMeters'];
+const verbatimElevation = j['http://rs.tdwg.org/dwc/terms/verbatimElevation'];
+const verbatimLocality = j['http://rs.tdwg.org/dwc/terms/verbatimLocality'];
+%>
+
+<% if (lat || lon || minElevation || maxElevation || verbatimElevation || verbatimLocality) { %>
+
+    <div class="card">
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted">
+                <i class="fas fa-map-marked"></i>
+                Spatial
+            </h6>
+
+            <dl>
+                <% if(lat) { %>
+                    <dt>Latitude:</dt>
+                    <dd>
+                        <%= lat %>
+                    </dd>
+                <% } %>
+
+                <% if(lon) { %>
+                    <dt>Latitude:</dt>
+                    <dd>
+                        <%= lon %>
+                    </dd>
+                <% } %>
+
+                <% if(verbatimLocality) { %>
+                    <dt>Locality:</dt>
+                    <dd>
+                        <%= verbatimLocality %>
+                    </dd>
+                <% } %>
+
+                <% if(minElevation || maxElevation || verbatimElevation) { %>
+                    <dt>Elevation:</dt>
+                    <dd>
+                        <%= verbatimElevation %>
+                        <%= (minElevation || maxElevation) ? `(${minElevation + ' m' || '-∞'} - ${maxElevation + ' m' || '+∞'})` : '' %>
+                    </dd>
+                <% } %>
+            </dl>
+
+        </div>
+    </div>
+
+<% } %>
+

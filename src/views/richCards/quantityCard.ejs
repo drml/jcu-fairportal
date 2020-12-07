@@ -1,0 +1,25 @@
+<%
+const quantity = j['http://rs.tdwg.org/dwc/terms/organismQuantity'];
+const quantityType = j['http://rs.tdwg.org/dwc/terms/organismQuantityType'];
+%>
+
+<% if(quantity) { %>
+
+    <div class="card">
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted">
+                <i class="fas fa-calculator"></i>
+                Quantities
+            </h6>
+
+            <dl>
+                <% if(quantity) { %>
+                    <dt>Number of organisms:</dt>
+                    <dd><%= quantity %> <%= quantityType %></dd>
+                <% } %>
+            </dl>
+        </div>
+    </div>
+
+<% } %>
+

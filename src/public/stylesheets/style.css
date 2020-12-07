@@ -1,0 +1,40 @@
+
+body > div.container {
+    margin-top: 1rem;
+}
+
+.popover {
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+    max-width: none;
+}
+
+.popover > .popover-body iframe {
+    border: 0;
+}
+
+[data-toggle=collapse].collapsed span.expanded-title {
+    display: none;
+}
+
+[data-toggle=collapse].collapsed span.collapsed-title {
+    display: inline;
+}
+
+[data-toggle=collapse]:not(.collapsed) span.expanded-title {
+    display: inline;
+}
+
+[data-toggle=collapse]:not(.collapsed) span.collapsed-title {
+    display: none;
+}
+
+
+code.json.hljs {
+    max-height: 500px;
+}
+
+
+.limited-height {
+    max-height: 300px;
+    overflow-y: auto;
+}

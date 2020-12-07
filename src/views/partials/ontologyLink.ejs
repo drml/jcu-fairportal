@@ -1,0 +1,37 @@
+<% if (typeof link === "string") { %>
+    <% if (link.startsWith("http://") || link.startsWith("https://")) { %>
+
+
+        <a href="<%= link %>"
+           target="_blank"
+           class="d-sm-none">
+            <%= link %> <i class="fas fa-external-link-alt"></i>
+        </a>
+
+
+        <a href="<%= link %>"
+           class="d-none d-sm-inline"
+           data-toggle="iframe-popover"
+           data-iframe-link="<%= link %>">
+            <%= link %> <i class="fas fa-binoculars"></i>
+        </a>
+
+
+    <% } else if (link.startsWith("_:")) { %>
+
+        <a href="#local-<%= link %>">
+            <%= link %> <i class="fas fa-hashtag"></i>
+        </a>
+
+    <% } else { %>
+        <span><%= link %></span>
+    <% } %>
+<% } else if (typeof link === 'object'){ %>
+    <% if(link["@id"]) { %>
+        <%- include('../partials/iriLink', {iri: link, localIris}) %>
+    <% } else { %>
+        <pre><code class="json"><%- JSON.stringify(value, null, 4); %></code></pre>
+    <% } %>
+<% } else { %>
+    <%= link %>
+<% } %>

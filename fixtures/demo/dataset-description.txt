@@ -1,0 +1,12 @@
+Set A7-01
+Datum: 27.11.2007 - 29.11.2007
+
+Lokalita: a. Deseado (San Antonio, Iguazu), provincie Misiones, Argentina
+GPS: -25.671028,-53.932972
+Popis: Základní tábor, přítok Iguazu nad Cataratas.
+Nadmoř. výška: 198 m
+
+Všechna měření délek jsou v milimetrech. Každý záznam popisuje jendu ulovenou rybu.
+
+
+schema: 5dcc2f3d5272463c8880a1d2

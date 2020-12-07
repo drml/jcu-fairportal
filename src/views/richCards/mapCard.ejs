@@ -1,0 +1,31 @@
+<%
+const lat = j['http://schema.org/latitude'] || j["http://rs.tdwg.org/dwc/terms/decimalLatitude"];
+const lon = j['http://schema.org/longitude'] || j["http://rs.tdwg.org/dwc/terms/decimalLongitude"];
+const verbatimLocality = j['http://rs.tdwg.org/dwc/terms/verbatimLocality'];
+%>
+
+<% if((lat && lon) || verbatimLocality) { %>
+
+    <div class="card">
+
+        <% const mapQ = (lat && lon) ? lat + ',' + lon : verbatimLocality; %>
+
+        <iframe
+                width='100%'
+                height='250px'
+                id='mapcanvas'
+                src='https://maps.google.com/maps?q=<%= encodeURIComponent(mapQ) %>&Roadmap&z=1&ie=UTF8&iwloc=&output=embed'
+                frameborder='0'
+                scrolling='no'
+                marginheight='0'
+                marginwidth='0'
+        >
+            <div style='overflow:hidden;'>
+                <div id='gmap_canvas' style='height:100%;width:700px;'></div>
+            </div>
+        </iframe>
+
+    </div>
+
+<% } %>
+

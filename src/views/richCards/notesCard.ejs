@@ -1,0 +1,36 @@
+<%
+const identificationRemarks = j['http://rs.tdwg.org/dwc/terms/identificationRemarks'];
+const locationRemarks = j['http://rs.tdwg.org/dwc/terms/locationRemarks'];
+const description = j['http://schema.org/description'];
+%>
+
+<% if(identificationRemarks || locationRemarks || description) { %>
+
+    <div class="card">
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted">
+                <i class="fas fa-notes-medical"></i>
+                Notes
+            </h6>
+
+            <dl>
+                <% if(identificationRemarks) { %>
+                    <dt>Identification remarks:</dt>
+                    <dd><em><%= identificationRemarks %></em></dd>
+                <% } %>
+
+                <% if(locationRemarks) { %>
+                    <dt>Location remarks:</dt>
+                    <dd><em><%= locationRemarks %></em></dd>
+                <% } %>
+
+                <% if(description) { %>
+                    <dt>Description:</dt>
+                    <dd><em><%= description %></em></dd>
+                <% } %>
+            </dl>
+        </div>
+    </div>
+
+<% } %>
+

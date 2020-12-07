@@ -1,0 +1,71 @@
+# dataset-mapping.yaml (entita Dataset)
+---
+namespaceAliases:
+  sorg: http://schema.org/
+  obo: http://purl.obolibrary.org/obo/
+  dwc: http://rs.tdwg.org/dwc/terms/
+  dcterms: http://purl.org/dc/terms/
+  dktr: http://purl.org/dktr/fair/
+baseType: sorg:Dataset
+additionalTypes:
+  - sorg:Place
+mappings:
+  jmeno:
+    - sorg:name
+    - dcterms:title
+  obdobi: sorg:temporalCoverage
+  lokalita:
+    - dwc:verbatimLocality
+    - relationIdentity: sorg:spatialCoverage
+      relationType: sorg:Place
+      valueIdentity: sorg:name
+  gps_lat:
+    - sorg:latitude
+    - dwc:decimalLatitude
+  gps_lon:
+    - sorg:longitude
+    - dwc:decimalLongitude
+  popis_lokality: dwc:locationRemarks
+  nadmorska_vyska:
+    - dwc:minimumElevationInMeters
+    - dwc:maximumElevationInMeters
+    - dwc:verbatimElevation
+  poznamky: sorg:description
+staticIdentities:
+  - identity: dcterms:hasPart
+    value:
+      - "@id": dktr:entity/5dcc2f395272463c88809c62
+      - "@id": dktr:entity/5dcc2f395272463c88809c63
+      - "@id": dktr:entity/5dcc2f395272463c88809c69
+      - "@id": dktr:entity/5dcc2f395272463c88809c6a
+      - "@id": dktr:entity/5dcc2f395272463c88809c6b
+      - "@id": dktr:entity/5dcc2f395272463c88809c6c
+      - "@id": dktr:entity/5dcc2f395272463c88809c6d
+      - "@id": dktr:entity/5dcc2f395272463c88809c6e
+      - "@id": dktr:entity/5dcc2f395272463c88809c6f
+      - "@id": dktr:entity/5dcc2f395272463c88809c70
+      - "@id": dktr:entity/5dcc2f395272463c88809c73
+      - "@id": dktr:entity/5dcc2f395272463c88809c74
+      - "@id": dktr:entity/5dcc2f395272463c88809c75
+      - "@id": dktr:entity/5dcc2f395272463c88809c76
+      - "@id": dktr:entity/5dcc2f395272463c88809c77
+      - "@id": dktr:entity/5dcc2f395272463c88809c78
+      - "@id": dktr:entity/5dcc2f395272463c88809c79
+      - "@id": dktr:entity/5dcc2f395272463c88809c7a
+      - "@id": dktr:entity/5dcc2f395272463c88809c7b
+      - "@id": dktr:entity/5dcc2f395272463c88809c8d
+additionalMetadata:
+  - identity: dcterms:license
+    value:
+      "@id": https://creativecommons.org/licenses/by-nc-nd/4.0/
+  - identity: sorg:license
+    value:
+      "@id": https://creativecommons.org/licenses/by-nc-nd/4.0/
+  - identity: sorg:creator
+    value:
+      "@type": sorg:Person
+      sorg:sameAs: http://orcid.org/0000-0003-3167-2128
+      sorg:givenName: Ondřej
+      sorg:familyName: Doktor
+      sorg:name: Ondřej Doktor
+

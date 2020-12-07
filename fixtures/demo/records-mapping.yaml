@@ -1,0 +1,123 @@
+# record-mapping.yaml (entita Nález)
+---
+namespaceAliases:
+  sorg: http://schema.org/
+  obo: http://purl.obolibrary.org/obo/
+  sio: https://semanticscience.org/resource/
+  dwc: http://rs.tdwg.org/dwc/terms/
+  dwciri: http://rs.tdwg.org/dwc/iri/
+  dcterms: http://purl.org/dc/terms/
+  fisho: http://bioportal.bioontology.org/ontologies/FISHO#
+  dktr: http://purl.org/dktr/fair/
+baseType: dwc:Occurrence
+additionalTypes:
+  - sorg:Thing
+mappings:
+  documentName:
+    - sorg:name
+    - dwc:recordNumber
+    - dcterms:title
+  genus: dwc:genus
+  species: dwc:specificEpithet
+  specimen_old_id: sorg:sameAs
+  determination_note: dwc:identificationRemarks
+  river_name:
+    - fisho:FISHO_0000055
+    - relationIdentity: dcterms:relation
+      relationType: dcterms:Location
+      valueIdentity: dwc:waterBody
+      staticIdentities:
+        - identity: dwc:decimalLatitude
+          value: -25.671028
+        - identity: dwc:decimalLongitude
+          value: -53.932972
+        - identity: dwc:verbatimLocality
+          value: a. Deseado (San Antonio, Iguazu), provincie Misiones, Argentina
+        - identity: dwc:higherGeography
+          value: South America | Argentina | Misiones | San Antonio
+        - identity: dwc:municipality
+          value: San Antonio
+        - identity: dwc:stateProvince
+          value: Misiones
+        - identity: dwc:country
+          value: Argentina
+        - identity: dwc:countryCode
+          value: AR
+        - identity: dwc:continent
+          value: South America
+        - identity: dwc:locationRemarks
+          value: Základní tábor, přítok Iguazu nad Cataratas.
+        - identity: dwc:minimumElevationInMeters
+          value: 198
+        - identity: dwc:maximumElevationInMeters
+          value: 198
+        - identity: dwc:verbatimElevation
+          value: 198 m
+  fishingmethod:
+    valueIdentity: fisho:FISHO_0000133
+    valueProjection:
+      gillnets:
+        "@id": fisho:FISHO_0000025
+      electrofishing:
+        "@id": fisho:FISHO_0000368
+      castnet:
+        "@id": fisho:FISHO_0000259
+  standard_length:
+    - fisho:FISHO_0000064
+    - relationIdentity: dcterms:relation
+      relationType: dwc:MeasurementOrFact
+      valueIdentity: dwc:measurementValue
+      staticIdentities:
+        - identity: dwc:measurementType
+          value: standard length
+        - identity: dwc:measurementUnit
+          value: cm
+        - identity: sio:SIO_000221
+          value:
+            "@id": obo:UO_0000016
+  head_depth:
+    relationIdentity: dcterms:relation
+    relationType:
+      - dwc:MeasurementOrFact
+      - fisho:FISHO_0000027
+    valueIdentity: dwc:measurementValue
+    staticIdentities:
+      - identity: dwc:measurementType
+        value: head depth
+      - identity: dwc:measurementUnit
+        value: cm
+      - identity: sio:SIO_000221
+        value:
+          "@id": obo:UO_0000016
+      - identity: sio:SIO_000563
+        value:
+          "@id": fisho:FISHO_0000457
+      - identity: sio:SIO_000563
+        value:
+          "@id": obo:VT_0000038
+staticIdentities:
+  - identity: dwc:organismQuantity
+    value: 1
+  - identity: dwc:organismQuantityType
+    value: individuals
+additionalMetadata:
+  - identity: dcterms:license
+    value:
+      "@id": https://creativecommons.org/licenses/by-nc-nd/4.0/
+  - identity: sorg:license
+    value:
+     "@id": https://creativecommons.org/licenses/by-nc-nd/4.0/
+  - identity: dwciri:inDataset
+    value:
+      "@id": dktr:entity/accc2f3d5272463c8880a1d2
+  - identity: dcterms:isPartOf
+    value:
+      "@id": dktr:entity/accc2f3d5272463c8880a1d2
+  - identity: sorg:creator
+    value:
+      "@type": sorg:Person
+      sorg:sameAs: http://orcid.org/0000-0003-3167-2128
+      sorg:givenName: Ondřej
+      sorg:familyName: Doktor
+      sorg:name: Ondřej Doktor
+

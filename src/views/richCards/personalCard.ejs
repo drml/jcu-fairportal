@@ -1,0 +1,26 @@
+<%
+const creator = j['http://schema.org/creator'];
+const givenName = j['http://schema.org/givenName'];
+const familyName = j['http://schema.org/familyName'];
+%>
+
+<% if(creator || givenName || familyName) { %>
+
+    <div class="card">
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted">
+                <i class="fas fa-user"></i>
+                Personal
+            </h6>
+
+            <dl>
+                <%- include('partials/cardDefinitionListItem', {term: 'Creator:', definition: creator, localIris}) %>
+                <%- include('partials/cardDefinitionListItem', {term: 'Given Name:', definition: givenName, localIris}) %>
+                <%- include('partials/cardDefinitionListItem', {term: 'Family name:', definition: familyName, localIris}) %>
+            </dl>
+
+        </div>
+    </div>
+
+<% } %>
+

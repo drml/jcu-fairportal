@@ -1,0 +1,10 @@
+<% if(definition) { %>
+
+    <% const definitionArray = Array.isArray(definition) ? definition : [definition]; %>
+
+    <dt><%= term %></dt>
+
+    <% definitionArray.forEach(function(value){ %>
+        <dd><%- include('../../partials/ontologyLink', {link: value, localIris}) %></dd>
+    <% }); %>
+<% } %>

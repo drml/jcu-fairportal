@@ -1,0 +1,50 @@
+<hr>
+
+<h2>Semantic data under the hood</h2>
+
+<p>Dump of the <i>actual and only</i> data provided to the template. These data are:</p>
+<ol>
+    <li>included in the <code>&lt;script type="application/ld+json"&gt;&lt;/script&gt;</code> tag in
+        <code>&lt;head&gt;</code> of this document <small>(hit <kbd>Ctrl + U</kbd> and see for yourself :)</small></li>
+    <li>used for rendering the human-friendly representation you are looking at</li>
+</ol>
+
+
+<div class="card">
+    <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="#jsonld-dump-compact" data-toggle="tab">Compacted</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#jsonld-dump-flatten" data-toggle="tab">Flattened</a>
+            </li>
+            <li class="nav-item ml-auto">
+                <a href="https://json-ld.org/playground/#startTab=tab-expanded&json-ld=<%- encodeURIComponent(JSON.stringify(jsonLd)); %>"
+                   target="_blank"
+                   class="btn btn-success btn-sm"
+                >
+                    <i class="fas fa-external-link-alt"></i>
+                    Open in playground
+                </a>
+            </li>
+        </ul>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="jsonld-dump-compact">
+                <pre><code class="json"><%- JSON.stringify(jsonLd, null, 4); %></code></pre>
+            </div>
+            <div class="tab-pane fade" id="jsonld-dump-flatten">
+                <pre><code class="json"><%- JSON.stringify(jsonLdFlattened, null, 4); %></code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

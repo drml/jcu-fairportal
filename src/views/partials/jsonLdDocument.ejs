@@ -1,0 +1,92 @@
+<% function string_to_slug(str) {
+    str = str.replace(/^\s+|\s+$/g, ''); // trim
+    str = str.toLowerCase();
+
+    // remove accents, swap ñ for n, etc
+    var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
+    var to = "aaaaeeeeiiiioooouuuunc------";
+    for (var i = 0, l = from.length; i < l; i++) {
+        str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+    }
+
+    str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+            .replace(/\s+/g, '-') // collapse whitespace and replace by -
+            .replace(/-+/g, '-'); // collapse dashes
+
+    return str;
+}
+%>
+<% const j = jsonLdFlattened; %>
+<% const baseType = j["@type"] && (Array.isArray(j["@type"]) ? j["@type"][0] : j["@type"]) %>
+
+
+<h2 class="h6 text-muted text-right" id="local-<%= j["@id"] %>">
+    <i class="fas fa-hashtag"></i>
+    <%= j["@id"] %>
+</h2>
+
+<% if (baseType === "http://schema.org/WPHeader"){ %>
+    <h1 class="header">
+        <%= j["http://schema.org/name"] ?? j["http://schema.org/headline"] ?? baseType %>
+    </h1>
+    <% if(j["http://schema.org/alternativeHeadline"]){ %>
+        <h2 class="text-muted h4">
+            <small><%= j["http://schema.org/alternativeHeadline"] ?? '' %></small>
+        </h2>
+    <% } %>
+
+    <hr/>
+
+<% } else if (baseType === "http://schema.org/Action"){ %>
+
+    <a href="<%= j["http://schema.org/url"]["@id"] ? j["http://schema.org/url"]["@id"] : j["http://schema.org/url"] %>"
+       class="btn btn-primary btn-lg">
+        <% if (j["http://schema.org/name"] && j["http://schema.org/name"].toLowerCase().includes("download")){ %>
+            <i class="fas fa-download"></i>
+        <% } %>
+        <%= j["http://schema.org/name"] %>
+    </a>
+
+<% } else { %>
+
+    <div class="card bg-light mb-4 <%= j["http://schema.org/mainEntityOfPage"] ? 'border-success' : '' %>">
+
+
+        <%- include('richContent', {j: jsonLdFlattened, baseType, localIris}) %>
+
+        <div class="card-footer">
+        <span class="float-right">
+
+                <%- include('csvDownloadButtons', {j, baseType, localIris}) %>
+
+                <a class="btn btn-outline-secondary collapsed" data-toggle="collapse"
+                   href="#data-<%= string_to_slug(j["@id"]) %>">
+<!--                    <i class="fas fa-expand-alt"></i>-->
+                    <span class="collapsed-title">
+                        <i class="fas fa-chevron-down"></i>
+                        Show Data
+                    </span>
+                    <span class="expanded-title">
+                        <i class="fas fa-chevron-up"></i>
+                        Hide Data
+                    </span>
+                </a>
+        </span>
+            <small>Type: </small><%- include('humanReadableText', {value: baseType}) %><br>
+            <small class="text-muted "><%- include('ontologyLink', {link: baseType, localIris}) %></small>
+
+        </div>
+
+
+        <ul class="list-group list-group-flush ">
+
+            <li class="list-group-item collapse" id="data-<%= string_to_slug(j["@id"]) %>">
+
+                <%- include('dataDefinitionList', {jsonLdFlattened, localIris}) %>
+
+            </li>
+        </ul>
+
+    </div>
+<% } %>
+

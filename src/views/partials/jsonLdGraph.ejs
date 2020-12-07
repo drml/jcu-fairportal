@@ -1,0 +1,43 @@
+<% if (jsonLdFlattened["@graph"] && Array.isArray(jsonLdFlattened["@graph"])) { %>
+
+    <% const ordered = jsonLdFlattened["@graph"];
+
+        const entityIndex = ordered.findIndex(j => j["@id"] && j["@id"].startsWith(process.env.IRI_PREFIX_OF_SELF) && j["@id"].endsWith("/data"));
+
+        if (entityIndex > -1) {
+            const entity = ordered[entityIndex];
+            ordered.splice(entityIndex, 1);
+            ordered.unshift(entity);
+        }
+
+        const entityMetaIndex = ordered.findIndex(j => j["@id"] && j["@id"].startsWith(process.env.IRI_PREFIX_OF_SELF) && !j["@id"].endsWith("/data"));
+
+        if (entityIndex > -1) {
+            const entityMeta = ordered[entityMetaIndex];
+            ordered.splice(entityMetaIndex, 1);
+            ordered.unshift(entityMeta);
+        }
+
+
+        const headingIndex = ordered.findIndex(j => {
+            const baseType = j["@type"] && (Array.isArray(j["@type"]) ? j["@type"][0] : j["@type"]);
+            return (baseType === "http://schema.org/WPHeader");
+        });
+
+        if (headingIndex > -1) {
+            const heading = ordered[headingIndex];
+            ordered.splice(headingIndex, 1);
+            ordered.unshift(heading);
+        }
+
+        const localIris = ordered.filter(d => d["@id"]).map(d => d["@id"])
+    %>
+
+
+
+    <% ordered.forEach(function(document){ %>
+        <%- include('jsonLdDocument', {jsonLdFlattened: document, localIris}) %>
+    <% }); %>
+<% } else { %>
+    <%- include('jsonLdDocument', {jsonLdFlattened}) %>
+<% } %>

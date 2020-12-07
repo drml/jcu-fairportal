@@ -1,0 +1,23 @@
+
+
+
+<dl class="row">
+<% Object.keys(jsonLdFlattened).forEach(function(key){ %>
+
+    <% const values = Array.isArray(jsonLdFlattened[key]) ? jsonLdFlattened[key] : [jsonLdFlattened[key]]; %>
+
+    <dt class="col-sm-4">
+        <%- include('humanReadableText', {value: key})%>
+        <small class="d-block mb-2"><%- include('ontologyLink', {link: key, localIris})%></small>
+    </dt>
+    <dd class="col-sm-8">
+        <% if (values.length > 1) { %><ul><% } %>
+        <% values.forEach(function(value){ %>
+            <%if (values.length > 1) {%><li><%}%>
+                <%- include('ontologyLink', {link: value, localIris})%>
+            <% if (values.length > 1) { %></li><% } %>
+        <% }); %>
+        <%if (values.length > 1) {%></ul><%}%>
+    </dd>
+<% }); %>
+</dl>

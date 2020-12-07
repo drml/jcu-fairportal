@@ -1,0 +1,39 @@
+<%
+const created = j['http://schema.org/dateCreated'];
+const modified = j['http://schema.org/dateModified'];
+const temporalCoverage = j['http://schema.org/temporalCoverage'];
+%>
+
+<% if(created || modified || temporalCoverage) { %>
+
+    <div class="card">
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted">
+                <i class="fas fa-clock"></i>
+                Temporal
+            </h6>
+
+            <dl>
+                <% if(created) { %>
+                    <dt>Created at:</dt>
+                    <dd><%= created %></dd>
+                <% } %>
+
+                <% if(modified) { %>
+                    <dt>Last changed at:</dt>
+                    <dd><%= modified %></dd>
+                <% } %>
+
+                <% if(temporalCoverage) { %>
+
+                    <% const coverageParts = temporalCoverage.split("/"); %>
+
+                    <dt>Temporal coverage:</dt>
+                    <dd><%= coverageParts.length === 2 ? `From ${coverageParts[0]} to ${coverageParts[1]}` : coverageParts[0] %></dd>
+                <% } %>
+            </dl>
+        </div>
+    </div>
+
+<% } %>
+

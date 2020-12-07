@@ -1,0 +1,23 @@
+<%
+const href = iri["@id"];
+const isLocal = (localIris && localIris.find(x => x === href));
+%>
+
+<span>
+    <span class="badge badge-pill badge-info">IRI</span>
+
+    <% if (isLocal) { %>
+        <a href="<%= "#local-" + href %>" class="text-info">
+            <%= href %><sup>scroll to <i class="fa fa-arrows-alt-v"></i></sup>
+        </a>
+    <% } else { %>
+        <a href="<%= href %>" target="_blank" class="text-info d-sm-none">
+            <%= href %><i class="fa fa-external-link-alt"></i>
+        </a>
+        <a href="<%= href %>" target="_blank" class="text-info d-none d-sm-inline" data-toggle="iframe-popover"
+           data-iframe-link="<%= href %>">
+            <%= href %><i class="fas fa-binoculars"></i>
+        </a>
+    <% } %>
+
+</span>

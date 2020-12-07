@@ -1,0 +1,37 @@
+<%
+const genus = j['http://rs.tdwg.org/dwc/terms/genus'];
+const species = j['http://rs.tdwg.org/dwc/terms/specificEpithet'];
+const subSpecies = j['http://rs.tdwg.org/dwc/terms/infraspecificEpithet'];
+%>
+
+<% if(genus || species) { %>
+
+    <div class="card">
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted">
+                <i class="fas fa-dna"></i>
+                Taxonomy
+            </h6>
+
+            <dl>
+                <% if(genus) { %>
+                    <dt>Genus:</dt>
+                    <dd><%= genus %></dd>
+                <% } %>
+
+                <% if(species) { %>
+                    <dt>Species:</dt>
+                    <dd><%= species %> <%= subSpecies %></dd>
+                <% } %>
+
+                <% if(genus && species) { %>
+                    <dt>Scientific name (inferred):</dt>
+                    <dd><%= genus %> <%= species %> <%= subSpecies %></dd>
+                <% } %>
+            </dl>
+
+        </div>
+    </div>
+
+<% } %>
+

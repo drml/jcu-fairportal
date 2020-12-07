@@ -1,0 +1,21 @@
+﻿id;documentName;genus;species;specimen_old_id;determination_note;river_name;fishingmethod;standard_length;head_depth;fishingmethod
+5dcc2f395272463c88809c62;Pimelodus maculatus (94);Pimelodus;maculatus;http://example.com/old-fish-database/1;;Deseado;gillnets;37;24;hook&line
+5dcc2f395272463c88809c63;Geophagus brasiliensis (95);Geophagus;brasiliensis;http://example.com/old-fish-database/2;;Deseado;gillnets;66;17;hook&line
+5dcc2f395272463c88809c69;Crenicichla iguassuensis (101);Crenicichla;iguassuensis;http://example.com/old-fish-database/8;;Deseado;gillnets;79;28;hook&line
+5dcc2f395272463c88809c6a;Crenicichla iguassuensis;Crenicichla;iguassuensis;http://example.com/old-fish-database/9;;Deseado;gillnets;69;26;hook&line
+5dcc2f395272463c88809c6b;Crenicichla lepidota (102);Crenicichla;lepidota;http://example.com/old-fish-database/10;;Deseado;gillnets;90;18;hook&line
+5dcc2f395272463c88809c6c;Crenicichla tapii x tuca ? (103);Crenicichla;tapii;http://example.com/old-fish-database/11;Crenicichla tapii x tuca ? thick lips;Deseado;gillnets;78;19;hook&line
+5dcc2f395272463c88809c6d;Crenicichla tapii (104);Crenicichla;tapii;http://example.com/old-fish-database/12;;Deseado;electrofishing;100;24;
+5dcc2f395272463c88809c6e;Crenicichla tapii (105);Crenicichla;tapii;http://example.com/old-fish-database/13;;Deseado;electrofishing;78;30;
+5dcc2f395272463c88809c6f;Crenicichla tesay (106);Crenicichla;tesay;http://example.com/old-fish-database/14;;Deseado;electrofishing;53;17;
+5dcc2f395272463c88809c70;Crenicichla tesay (107);Crenicichla;tesay;http://example.com/old-fish-database/15;;Deseado;castnet;64;15;hook&line
+5dcc2f395272463c88809c73;Gymnogeophagus meridionalis (110);Gymnogeophagus;meridionalis;http://example.com/old-fish-database/18;;Deseado;castnet;77;25;hook&line
+5dcc2f395272463c88809c74;Gymnogeophagus meridionalis (111);Gymnogeophagus;meridionalis;http://example.com/old-fish-database/19;;Deseado;castnet;79;16;hook&line
+5dcc2f395272463c88809c75;Crenicichla tesay (112);Crenicichla;tesay;http://example.com/old-fish-database/20;;Deseado;gillnets;89;17;hook&line
+5dcc2f395272463c88809c76;Crenicichla tesay (113);Crenicichla;tesay;http://example.com/old-fish-database/21;;Deseado;gillnets;48;20;hook&line
+5dcc2f395272463c88809c77;Crenicichla tesay (114);Crenicichla;tesay;http://example.com/old-fish-database/22;;Deseado;gillnets;69;29;hook&line
+5dcc2f395272463c88809c78;Crenicichla iguassuensis (115);Crenicichla;iguassuensis;http://example.com/old-fish-database/23;;Deseado;gillnets;40;28;hook&line
+5dcc2f395272463c88809c79;Crenicichla iguassuensis (116);Crenicichla;iguassuensis;http://example.com/old-fish-database/24;;Deseado;gillnets;50;27;hook&line
+5dcc2f395272463c88809c7a;Crenicichla lepidota (117);Crenicichla;lepidota;http://example.com/old-fish-database/25;;Deseado;gillnets;77;22;hook&line
+5dcc2f395272463c88809c7b;Crenicichla lepidota (118);Crenicichla;lepidota;http://example.com/old-fish-database/26;;Deseado;gillnets;86;25;hook&line
+5dcc2f395272463c88809c8d;Gymnogeophagus meridionalis ? (145);Gymnogeophagus;meridionalis;http://example.com/old-fish-database/44;or Geophagus;Deseado;gillnets;58;19;hook&line

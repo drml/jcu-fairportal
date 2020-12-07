@@ -1,0 +1,60 @@
+<%
+const relations = j['http://purl.org/dc/terms/relation'];
+const inDataset = j['http://rs.tdwg.org/dwc/iri/inDataset'];
+const isPartOf = !inDataset && j['http://purl.org/dc/terms/isPartOf'];
+const hasParts = j['http://purl.org/dc/terms/hasPart'];
+const sameAs = j['http://schema.org/sameAs'];
+const sioDescribes = j['https://semanticscience.org/resource/SIO_000563'];
+%>
+
+<% if(relations || inDataset || isPartOf || hasParts || sameAs || sioDescribes) { %>
+
+    <div class="card">
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted">
+                <i class="fas fa-project-diagram"></i>
+                Relations
+            </h6>
+
+            <dl class="limited-height">
+                <%- include('partials/cardDefinitionListItem', {term: 'Related:', definition: relations, localIris}) %>
+                <%- include('partials/cardDefinitionListItem', {term: 'Dataset:', definition: inDataset, localIris}) %>
+                <%- include('partials/cardDefinitionListItem', {term: 'Is part of:', definition: isPartOf, localIris}) %>
+                <%- include('partials/cardDefinitionListItem', {term: 'Contains:', definition: hasParts, localIris}) %>
+                <%- include('partials/cardDefinitionListItem', {term: 'Aliases:', definition: sameAs, localIris}) %>
+                <%- include('partials/cardDefinitionListItem', {term: 'Describes:', definition: sioDescribes, localIris}) %>
+            </dl>
+
+        </div>
+
+        <% if (baseType === "http://schema.org/Dataset" && hasParts){ %>
+
+            <% const datasetEntries = (Array.isArray(hasParts) ? hasParts : [hasParts])
+                    .filter(e => e["@id"] && e["@id"].match(/entity\/(.*)$/g))
+                    .map(e => [...e["@id"].matchAll(/entity\/(.*)$/g)][0][1]); %>
+
+            <% if (datasetEntries.length > 0){ %>
+
+                <div class="card-body pt-0">
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        <i class="fas fa-scroll"></i>
+                        Dataset entries
+                    </h6>
+
+                    <a href="<%= process.env.IRI_PREFIX_OF_SELF + "/entity?" + datasetEntries.map(e => "id[]=" + e).join("&") %>"
+                       class="btn btn-success">
+                        <i class="fas fa-list"></i>
+                        List
+                    </a>
+                    <a href="<%= process.env.IRI_PREFIX_OF_SELF + "/entity/csv?" + datasetEntries.map(e => "id[]=" + e).join("&") %>"
+                       class="btn btn-primary">
+                        <i class="fas fa-download"></i>
+                        Download to CSV
+                    </a>
+                </div>
+            <% } %>
+        <% } %>
+    </div>
+
+<% } %>
+

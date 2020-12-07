@@ -1,0 +1,39 @@
+<%
+const license = j['http://purl.org/dc/terms/license'] || j["http://schema.org/license"];
+%>
+
+<% if(license) { %>
+
+    <div class="card">
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted">
+                <i class="fas fa-balance-scale"></i>
+                License and rights
+            </h6>
+
+            <dl>
+                <% if(license) { %>
+                    <dt>License:</dt>
+                    <dd><%- include('../partials/ontologyLink', {link: license, localIris}) %></dd>
+
+
+                    <%const licenseUrl = typeof license === 'string' ? license : (typeof license === 'object' && license["@id"] ? license["@id"] : false );%>
+                    <% if (licenseUrl && licenseUrl.includes("//creativecommons.org/licenses")){ %>
+                        <dt>Creative commons:</dt>
+                        <dd>
+                            <%if (licenseUrl.includes("by")){%><i class="fab fa-2x fa-creative-commons-by"></i> <% } %>
+                            <%if (licenseUrl.includes("nc")){%><i class="fab fa-2x fa-creative-commons-nc"></i> <% } %>
+                            <%if (licenseUrl.includes("nd")){%><i class="fab fa-2x fa-creative-commons-nd"></i> <% } %>
+                            <%if (licenseUrl.includes("pd")){%><i class="fab fa-2x fa-creative-commons-pd"></i> <% } %>
+                            <%if (!licenseUrl.includes("nd")){%><i class="fab fa-2x fa-creative-commons-remix"></i> <% } %>
+                            <%if (licenseUrl.includes("sa")){%><i class="fab fa-2x fa-creative-commons-sa"></i> <% } %>
+                            <%if (licenseUrl.includes("zero")){%><i class="fab fa-2x fa-creative-commons-zero"></i> <% } %>
+                        </dd>
+                    <% } %>
+                <% } %>
+            </dl>
+        </div>
+    </div>
+
+<% } %>
+

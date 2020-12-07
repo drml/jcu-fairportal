@@ -1,0 +1,134 @@
+<% if (baseType === "http://schema.org/WebPage"){ %>
+
+    <div class="card-body">
+        <h5 class="card-title">
+            <i class="far fa-newspaper"></i>
+
+            <%= j["http://schema.org/name"] ?? j["http://schema.org/headline"] ?? baseType %>
+
+        </h5>
+
+        <%
+            const address = j["http://schema.org/identifier"] ?? j["http://schema.org/mainEntity"]
+        if (address) {
+        %>
+            <h6 class="card-subtitle mb-2 text-muted">Address: <%= address %></h6>
+        <% } %>
+        <% if(address.startsWith("http://") || address.startsWith("https://")){ %>
+            <a href="<%= address %>" class="btn btn-success">Follow <i class="fas fa-arrow-right ml-1"></i> </a>
+        <% } %>
+    </div>
+
+<% } else if (baseType === "http://schema.org/Article"){ %>
+
+    <div class="card-body bg-white">
+
+
+        <h5 class="card-title">
+            <%= j["http://schema.org/name"] ?? j["http://schema.org/headline"] ?? baseType %>
+        </h5>
+
+        <%- j["http://schema.org/articleBody"] %>
+
+    </div>
+
+<% } else if (baseType === "http://rs.tdwg.org/dwc/terms/Occurrence"){ %>
+
+    <div class="card-header bg-success text-white">
+        <i class="fas fa-seedling"></i> <%= j["http://schema.org/name"] ?? j["http://schema.org/headline"] ?? baseType %>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="card-columns">
+            <%- include('../richCards/index', {j, baseType, localIris}) %>
+        </div>
+
+    </div>
+
+<% } else if (baseType === "http://purl.org/dc/terms/Location" || baseType === "http://schema.org/Place"){ %>
+
+
+    <% const mapQ = (j["http://rs.tdwg.org/dwc/terms/decimalLatitude"] && j["http://rs.tdwg.org/dwc/terms/decimalLongitude"])
+            ? j["http://rs.tdwg.org/dwc/terms/decimalLatitude"] + ',' + j["http://rs.tdwg.org/dwc/terms/decimalLongitude"]
+            : j["http://rs.tdwg.org/dwc/terms/verbatimLocality"] || j['http://schema.org/name']; %>
+
+    <iframe
+            width='100%'
+            height='500'
+            id='mapcanvas'
+            src='https://maps.google.com/maps?q=<%= encodeURIComponent(mapQ) %>&Roadmap&z=6&ie=UTF8&iwloc=&output=embed'
+            frameborder='0'
+            scrolling='no'
+            marginheight='0'
+            marginwidth='0'
+    >
+        <div style='overflow:hidden;'>
+            <div id='gmap_canvas' style='height:100%;width:700px;'></div>
+        </div>
+    </iframe>
+
+
+<% } else if (baseType === "http://schema.org/CreativeWork"){ %>
+
+
+    <div class="card-header bg-dark text-white">
+        <i class="fas fa-seedling"></i> <%= j["http://schema.org/name"] ?? j["http://schema.org/headline"] ?? baseType %>
+    </div>
+
+    <div class="card-body">
+
+        <div class="card-columns">
+            <%- include('../richCards/index', {j, baseType, localIris}) %>
+        </div>
+
+    </div>
+
+<% } else if (baseType === "http://schema.org/Dataset"){ %>
+
+    <div class="card-header bg-success text-white">
+        <i class="fas fa-table"></i> <%= j["http://schema.org/name"] ?? j["http://schema.org/headline"] ?? baseType %>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="card-columns">
+            <%- include('../richCards/index', {j, baseType, localIris}) %>
+        </div>
+
+    </div>
+
+<% } else if (baseType === "http://schema.org/Person"){ %>
+<div class="card-body">
+
+    <% if (j["http://schema.org/name"]){ %>
+        <h5 class="card-title">
+            <i class="fa fa-user"></i>
+            <%= j["http://schema.org/name"] %>
+        </h5>
+    <% } %>
+
+    <div class="card-columns">
+        <%- include('../richCards/index', {j, baseType, localIris}) %>
+    </div>
+
+</div>
+<% } else { %>
+
+<div class="card-body">
+
+    <% if (j["http://schema.org/name"]){ %>
+        <h5 class="card-title">
+            <%= j["http://schema.org/name"] %>
+        </h5>
+    <% } %>
+
+    <div class="card-columns">
+        <%- include('../richCards/index', {j, baseType, localIris}) %>
+    </div>
+
+</div>
+
+<% } %>

@@ -1,0 +1,54 @@
+<%
+const mValue = j['http://rs.tdwg.org/dwc/terms/measurementValue'];
+const mUnitString = j['http://rs.tdwg.org/dwc/terms/measurementUnit'];
+const mSioUnit = j['https://semanticscience.org/resource/SIO_000221'];
+const mType = j['http://rs.tdwg.org/dwc/terms/measurementType'];
+
+
+const sioUnits = {
+    "http://purl.obolibrary.org/obo/UO_0000016": "mm",
+    "http://purl.obolibrary.org/obo/UO_0000015": "cm",
+    "http://purl.obolibrary.org/obo/UO_0000008": "m"
+};
+%>
+
+<% if(mValue || mType) { %>
+
+    <div class="card">
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted">
+                <i class="fas fa-ruler"></i>
+                Measurement
+            </h6>
+
+
+            <dl>
+                <%- include('partials/cardDefinitionListItem', {term: 'Type:', definition: mType, localIris}) %>
+                <% if(mValue) { %>
+                <dt>Value:</dt>
+
+                <% if (mSioUnit && mSioUnit["@id"] && sioUnits[mSioUnit["@id"]]) { %>
+
+                    <dd>
+                        <%= mValue %>
+
+                        <a href="<%= mSioUnit["@id"] %>" target="_blank" class="text-info d-sm-none">
+                            <%= sioUnits[mSioUnit["@id"]] %> <i class="fa fa-external-link-alt"></i>
+                        </a>
+                        <a href="<%= mSioUnit["@id"] %>" target="_blank" class="text-info d-none d-sm-inline"
+                           data-toggle="iframe-popover" data-iframe-link="<%= mSioUnit["@id"] %>">
+                            <%= sioUnits[mSioUnit["@id"]] %> <i class="fas fa-binoculars"></i>
+                        </a>
+                    </dd>
+
+                <% } else { %>
+                    <dd><%= mValue %> <%= mUnitString %></dd>
+                <% } %>
+                <% } %>
+            </dl>
+
+        </div>
+    </div>
+
+<% } %>
+
